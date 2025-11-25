@@ -1,26 +1,118 @@
 class Vehicle:
+    
+    """Classe para gerenciar veículos da frota."""
     def __init__(self, placa, marca, modelo, tipo, km, ano, consumo, status):
-        self.placa = placa
+        self.__placa = placa
         self.marca = marca
         self.modelo = modelo
         self.tipo = tipo
-        self.km = km
+        self.__km = km
         self.ano = ano
-        self.consumo = consumo
-        self.status = status
+        self.__consumo = consumo
+        self.__status = status
 
-    """Registrar um novo veículo na frota."""
+    @property
+    def placa(self):
+        return self.__placa
+    
+    @property
+    def km(self):
+        return self.__km
+    
+    @property
+    def consumo(self):
+        return self.__consumo
+    
+    @property
+    def status(self):
+       return self.__status
+
+    # Setters
+    @km.setter
+    def km(self, valor):
+        if valor < 0:
+            raise ValueError("A quilometragem não pode ser negativa")
+        self.__km = valor
+    
+    @status.setter
+    def status(self, valor):
+        status_validos = ['ativo', 'manutenção', 'inativo', 'descartado']
+        if valor.lower() not in status_validos:
+            raise ValueError(f"Status deve ser um de: {', '.join(status_validos)}")
+        self.__status = valor
+    
+    @consumo.setter
+    def consumo(self, valor):
+        if valor <= 0:
+            raise ValueError("O consumo deve ser maior que zero")
+        self.__consumo = valor
+
+    def __str__(self):
+        return (f"Veículo: {self.marca} {self.modelo} ({self.ano}) - "
+                f"Placa: {self.__placa} - Status: {self.__status}")
+       
+    def __eq__(self, outro):
+        if not isinstance(outro, Vehicle):
+            return False
+        return self.__placa == outro.__placa
+
     def addVeiculo(self):
-        pass
+        return {
+            'placa': self.__placa,
+            'marca': self.marca,
+            'modelo': self.modelo,
+            'tipo': self.tipo,
+            'km': self.__km,
+            'ano': self.ano,
+            'consumo': self.__consumo,
+            'status': self.__status
+        }
 
-    """Visualizar as informações de um veículo."""
     def viewVeiculo(self):
-        pass
+        return {
+            'placa': self.__placa,
+            'marca': self.marca,
+            'modelo': self.modelo,
+            'tipo': self.tipo,
+            'quilometragem': self.__km,
+            'ano_fabricacao': self.ano,
+            'consumo_km_litro': self.__consumo,
+            'status': self.__status,
+        }
 
-    """Atualizar as informações de um veículo."""
-    def updateVeiculo(self):
-        pass    
+    def updateVeiculo(self, **kwargs):
+        atributos_permitidos = ['km', 'status', 'consumo']
+        
+        for chave, valor in kwargs.items():
+            if chave not in atributos_permitidos:
+                raise ValueError(f"Atributo '{chave}' não pode ser atualizado")
+            
+            if chave == 'km':
+                self.km = valor
+            elif chave == 'status':
+                self.status = valor
+            elif chave == 'consumo':
+                self.consumo = valor
 
-    """Remover um veículo da frota."""
     def removeVeiculo(self):
-        pass
+        self.__status = 'inativo'
+        return f"Veículo com placa {self.__placa} foi removido da frota ativa"
+    
+    def calcular_consumo_total(self, litros_abastecidos):
+        if litros_abastecidos < 0:
+            raise ValueError("A quantidade de litros abastecidos não pode ser negativa")
+        return litros_abastecidos * self.__consumo
+    
+    def registrar_viagem(self, km_percorridos):
+        if km_percorridos < 0:
+            raise ValueError("O valor da quilometragem não pode ser negativa")
+        
+        km_anterior = self.__km
+        self.__km += km_percorridos
+        
+        return {
+            'km_anterior': km_anterior,
+            'km_adicionados': km_percorridos,
+            'km_total': self.__km,
+            'placa': self.__placa
+        }
