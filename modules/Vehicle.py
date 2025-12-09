@@ -8,9 +8,10 @@ class Vehicle:
         self.tipo = tipo
         self.__km = km
         self.ano = ano
-        self.__consumo = consumo
-        self.__status = status
+        self.consumo = consumo
+        self.status = status
 
+    # Getters
     @property
     def placa(self):
         return self.__placa
@@ -18,10 +19,6 @@ class Vehicle:
     @property
     def km(self):
         return self.__km
-    
-    @property
-    def consumo(self):
-        return self.__consumo
     
     @property
     def status(self):
@@ -40,12 +37,6 @@ class Vehicle:
         if valor.lower() not in status_validos:
             raise ValueError(f"Status deve ser um de: {', '.join(status_validos)}")
         self.__status = valor
-    
-    @consumo.setter
-    def consumo(self, valor):
-        if valor <= 0:
-            raise ValueError("O consumo deve ser maior que zero")
-        self.__consumo = valor
 
     def __str__(self):
         return (f"Veículo: {self.marca} {self.modelo} ({self.ano}) - "
@@ -116,3 +107,15 @@ class Vehicle:
             'km_total': self.__km,
             'placa': self.__placa
         }
+
+class Car(Vehicle):
+    def __init__(self):
+        pass
+
+class Moto(Vehicle):
+    def __init__(self):
+        pass
+
+class Truck(Vehicle):
+    def __init__(self):
+        pass
