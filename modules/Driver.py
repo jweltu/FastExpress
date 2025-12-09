@@ -2,7 +2,7 @@ class Driver:
     """Classe para gerenciar motoristas da frota."""
     
     def __init__(self, name, cpf, expAnos, cnh, disponibilidade, qtdViagens, categoria):
-        self.__name = name
+        self.name = name
         self.__cpf = cpf
         self.expAnos = expAnos
         self.__cnh = cnh
@@ -10,11 +10,6 @@ class Driver:
         self.qtdViagens = qtdViagens
         self.categoria = categoria
 
-    # Propriedades (Getters)
-    @property
-    def name(self):
-        return self.__name
-    
     @property
     def cpf(self):
         return self.__cpf
@@ -29,15 +24,15 @@ class Driver:
         """Define o nome do motorista."""
         if not valor or not isinstance(valor, str):
             raise ValueError("Nome deve ser uma string não vazia")
-        self.__name = valor
+        self.name = valor
 
     def __str__(self):
         status = "Disponível" if self.disponibilidade else "Indisponível"
-        return (f"Motorista: {self.__name} | CPF: {self._mascarar_cpf()} | "
+        return (f"Motorista: {self.name} | CPF: {self._mascarar_cpf()} | "
                 f"CNH: {self.__cnh} ({self.categoria}) | Status: {status}")
     
     def __repr__(self):
-        return (f"Driver(name='{self.__name}', cpf='{self.__cpf}', "
+        return (f"Driver(name='{self.name}', cpf='{self.__cpf}', "
                 f"expAnos={self.expAnos}, cnh='{self.__cnh}', "
                 f"disponibilidade={self.disponibilidade}, qtdViagens={self.qtdViagens}, "
                 f"categoria='{self.categoria}')")
@@ -49,7 +44,7 @@ class Driver:
 
     def addDriver(self):
         return {
-            'nome': self.__name,
+            'nome': self.name,
             'cpf': self.__cpf,
             'experiencia_anos': self.expAnos,
             'cnh': self.__cnh,
@@ -60,7 +55,7 @@ class Driver:
 
     def removeDriver(self):
         self.disponibilidade = False
-        return f"Motorista {self.__name} (CPF: {self._mascarar_cpf()}) foi removido da frota"
+        return f"Motorista {self.name} (CPF: {self._mascarar_cpf()}) foi removido da frota"
 
     def updateDriver(self, **kwargs):
         atributos_permitidos = ['name', 'disponibilidade', 'expAnos', 'qtdViagens']
@@ -80,7 +75,7 @@ class Driver:
 
     def viewDriver(self):
         return {
-            'nome': self.__name,
+            'nome': self.name,
             'cpf': self._mascarar_cpf(),
             'experiencia_anos': self.expAnos,
             'cnh': self.__cnh,
