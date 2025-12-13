@@ -1,11 +1,18 @@
 class Maintenance:
-    def __init__ (self, data, veiculo, tipoManutencao, descricao, valor):
+    def __init__ (self, data, vehiclePlate, description, cost=0, maintenanceType=True):
         self.data = data
-        self.veiculo = veiculo
-        self.tipoManutencao = tipoManutencao
-        self.descricao = descricao
-        self.valor = valor
+        self.vehiclePlate = vehiclePlate
+        self.maintenanceType = maintenanceType
+        self.description = description
+        self.cost = cost
 
     """Registrar a manutenção do veículo."""
-    def registrarManutencao(self):
-        pass
+    def newMaintenance(self):
+        pass  # Implementar o registro de manutenção aqui
+
+    def updateMaintenance(self):
+        pass  # Implementar a atualização de dados de manutenção aqui
+
+    def viewMaintenances(self):
+        pass  # Implementar a visualização de veículos em manutenção aqui
+

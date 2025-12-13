@@ -1,118 +1,58 @@
-class Vehicle:
-    
+from main import *
+import sqlite3  
+import os
+
+class Vehicle:   
     """Classe para gerenciar veículos da frota."""
-    def __init__(self, placa, marca, modelo, tipo, km, ano, consumo, status):
-        self.__placa = placa
-        self.marca = marca
-        self.modelo = modelo
-        self.tipo = tipo
-        self.__km = km
-        self.ano = ano
-        self.__consumo = consumo
-        self.__status = status
-
-    @property
-    def placa(self):
-        return self.__placa
+    def __init__(self, plate, brand, model, mileage, year, kmPerLt, tripStatus=True):
+        self.plate = plate
+        self.brand = brand
+        self.model = model
+        self.mileage = mileage
+        self.year = year
+        self.kmPerLt = kmPerLt
+        self.status = tripStatus
     
-    @property
-    def km(self):
-        return self.__km
-    
-    @property
-    def consumo(self):
-        return self.__consumo
-    
-    @property
-    def status(self):
-       return self.__status
+    def vehicleReport(self):
+        pass  # Implementar o relatório de veículos aqui
 
-    # Setters
-    @km.setter
-    def km(self, valor):
-        if valor < 0:
-            raise ValueError("A quilometragem não pode ser negativa")
-        self.__km = valor
-    
-    @status.setter
-    def status(self, valor):
-        status_validos = ['ativo', 'manutenção', 'inativo', 'descartado']
-        if valor.lower() not in status_validos:
-            raise ValueError(f"Status deve ser um de: {', '.join(status_validos)}")
-        self.__status = valor
-    
-    @consumo.setter
-    def consumo(self, valor):
-        if valor <= 0:
-            raise ValueError("O consumo deve ser maior que zero")
-        self.__consumo = valor
+    def updateMileage(self, newMileage):
+        pass  # Implementar a atualização da quilometragem aqui
 
-    def __str__(self):
-        return (f"Veículo: {self.marca} {self.modelo} ({self.ano}) - "
-                f"Placa: {self.__placa} - Status: {self.__status}")
-       
-    def __eq__(self, outro):
-        if not isinstance(outro, Vehicle):
-            return False
-        return self.__placa == outro.__placa
+    def newVehicle(self):
+        '''Recebe os dados do veículo e registra no banco de dados.'''
 
-    def addVeiculo(self):
-        return {
-            'placa': self.__placa,
-            'marca': self.marca,
-            'modelo': self.modelo,
-            'tipo': self.tipo,
-            'km': self.__km,
-            'ano': self.ano,
-            'consumo': self.__consumo,
-            'status': self.__status
-        }
-
-    def viewVeiculo(self):
-        return {
-            'placa': self.__placa,
-            'marca': self.marca,
-            'modelo': self.modelo,
-            'tipo': self.tipo,
-            'quilometragem': self.__km,
-            'ano_fabricacao': self.ano,
-            'consumo_km_litro': self.__consumo,
-            'status': self.__status,
-        }
-
-    def updateVeiculo(self, **kwargs):
-        atributos_permitidos = ['km', 'status', 'consumo']
+        plate = input("Placa do veículo: ")
+        brand = input("Marca do veículo: ")
+        model = input("Modelo do veículo: ")
+        mileage = float(input("Quilometragem atual do veículo (km): "))
+        year = int(input("Ano de fabricação do veículo: "))
+        kmPerLt = float(input("Consumo médio inicial do veículo (km/l): "))
+        status = True  # Novo veículo está disponível por padrão   
+        # adicionar o código para salvar os dados no banco de dados
         
-        for chave, valor in kwargs.items():
-            if chave not in atributos_permitidos:
-                raise ValueError(f"Atributo '{chave}' não pode ser atualizado")
-            
-            if chave == 'km':
-                self.km = valor
-            elif chave == 'status':
-                self.status = valor
-            elif chave == 'consumo':
-                self.consumo = valor
+    def viewVehicles(self):
+        pass  # Implementar a visualização de veículos aqui
 
-    def removeVeiculo(self):
-        self.__status = 'inativo'
-        return f"Veículo com placa {self.__placa} foi removido da frota ativa"
-    
-    def calcular_consumo_total(self, litros_abastecidos):
-        if litros_abastecidos < 0:
-            raise ValueError("A quantidade de litros abastecidos não pode ser negativa")
-        return litros_abastecidos * self.__consumo
-    
-    def registrar_viagem(self, km_percorridos):
-        if km_percorridos < 0:
-            raise ValueError("O valor da quilometragem não pode ser negativa")
+    def updateVehicle(self):
+        pass  # Implementar a atualização de informações do veículo aqui
+
+    def deleteVehicle(self):    
+        pass  # Implementar a exclusão de veículo aqui
+
+
+
+class Truck(Vehicle):
+    def __init__(self, plate, brand, model, mileage, year, kmPerLt, maxLoadKg, status=True):
+        super().__init__(plate, brand, model, mileage, year, kmPerLt, status)
+        self.maxLoadKg = maxLoadKg
+
+class Car(Vehicle):
+    def __init__(self, plate, brand, model, mileage, year, kmPerLt, passengerCapacity, status=True):
+        super().__init__(plate, brand, model, mileage, year, kmPerLt, status)
+        self.passengerCapacity = passengerCapacity
         
-        km_anterior = self.__km
-        self.__km += km_percorridos
-        
-        return {
-            'km_anterior': km_anterior,
-            'km_adicionados': km_percorridos,
-            'km_total': self.__km,
-            'placa': self.__placa
-        }
+class Motorcycle(Vehicle):
+    def __init__(self, plate, brand, model, mileage, year, kmPerLt, engineCapacityCc, status=True):
+        super().__init__(plate, brand, model, mileage, year, kmPerLt, status)
+        self.engineCapacityCc = engineCapacityCc
