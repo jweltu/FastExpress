@@ -21,11 +21,12 @@ FastExpress/
 |   ├── Vehicle.py
 |   └── fuelSupply.py
 |
-├── data/                # Pasta de informações sobre o usuário
-|   └── dados.py
-|
 ├── config/              # Pasta de configurações do sistema
 |   └── settings.py
 |
+├── data.db
 ├── main.py              # Arquivo principal
-└── README.md            # Este arquivo ```
+└── README.md            # Este arquivo
+
+```
+
