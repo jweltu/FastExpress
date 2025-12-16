@@ -36,4 +36,4 @@ FastExpress/
 └── README.md            # Este arquivo
 ```
 
-
+Projeto desenvolvido por José Welton, para a disciplina de Programação Orientada a Objetos - UFCA.
