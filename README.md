@@ -2,7 +2,7 @@
 
 O **FastExpress** é um sistema voltado para o controle e otimização do gerenciamento da frota de veículos motorizados de uma empresa, no qual é possível realizar controle de custos e manutenções, alocação à motoristas, registro de abastecimentos e atualizações na frota e nos funcionários, além de gerar relatórios e estatisticas de desempenho de cada veículo, permitindo uma maior eficiência no processo logístico da empresa.
 
-O objetivo do projeto se consitui no aprendizado e prática dos conceitos de base relacionados a Programação Orientada a Objetos, no qual é apresentado os requisitos de herança, encapsulamento, métodos especiais, geração de relatórios e testes, entre outras ferramentas.
+O objetivo do projeto se consitui no aprendizado e prática dos conceitos de base relacionados a Programação Orientada a Objetos, no qual é apresentado os requisitos de herança, encapsulamento, métodos especiais, geração de relatórios, entre outras ferramentas.
 
 Este projeto se constitui em um componente da disciplina de Programação Orientada a Objetos, com a orientação do professor Jayr Pereira, do curso de Engenharia de Software, na Universidade Federal do Cariri (UFCA).
 
