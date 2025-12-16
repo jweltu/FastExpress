@@ -2,30 +2,38 @@
 
 O **FastExpress** é um sistema voltado para o controle e otimização do gerenciamento da frota de veículos motorizados de uma empresa, no qual é possível realizar controle de custos e manutenções, alocação à motoristas, registro de abastecimentos e atualizações na frota e nos funcionários, além de gerar relatórios e estatisticas de desempenho de cada veículo, permitindo uma maior eficiência no processo logístico da empresa.
 
-O objetivo do projeto se consitui no aprendizado e prática dos conceitos de base relacionados a Programação Orientada a Objetos, no qual é apresentado os requisitos de herança, encapsulamento, métodos especiais, geração de relatórios e testes, entre outras ferramentas.
+O objetivo do projeto se consitui no aprendizado e prática dos conceitos de base relacionados a Programação Orientada a Objetos, no qual é apresentado os requisitos de herança, encapsulamento, métodos especiais, geração de relatórios, entre outras ferramentas.
 
 Este projeto se constitui em um componente da disciplina de Programação Orientada a Objetos, com a orientação do professor Jayr Pereira, do curso de Engenharia de Software, na Universidade Federal do Cariri (UFCA).
 
-# 🔧Pré-requisitos
-- Python 3;
-- Pytest.
+---
+## 🔧Pré-requisitos
+- **Python 3.10**;
+- **Git**.
 
+## 💻Como rodar 
+```bash
+git clone https://github.com/jweltu/FastExpress
+cd FastExpress
+python main.py
+```
+
+## 💽Estrutura do código
 ```
 FastExpress/
 |
 ├── modules/             # Pacote de classes
+|   ├──__init__.py
 |   ├── Driver.py
 |   ├── Maintenance.py
-|   ├── Relatorio.py
+|   ├── Report.py
 |   ├── Trip.py
 |   ├── Vehicle.py
 |   └── fuelSupply.py
 |
-├── data/                # Pasta de informações sobre o usuário
-|   └── dados.py
-|
-├── config/              # Pasta de configurações do sistema
-|   └── settings.py
-|
+├── data.db
 ├── main.py              # Arquivo principal
-└── README.md            # Este arquivo ```
+└── README.md            # Este arquivo
+```
+
+Projeto desenvolvido por José Welton, para a disciplina de Programação Orientada a Objetos - UFCA.
