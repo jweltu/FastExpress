@@ -6,23 +6,30 @@ O objetivo do projeto se consitui no aprendizado e prática dos conceitos de bas
 
 Este projeto se constitui em um componente da disciplina de Programação Orientada a Objetos, com a orientação do professor Jayr Pereira, do curso de Engenharia de Software, na Universidade Federal do Cariri (UFCA).
 
-# 🔧Pré-requisitos
-- Python 3;
-- Pytest.
+---
+## 🔧Pré-requisitos
+- **Python 3.10**;
+- **Git**.
 
+## 💻Como rodar 
+```bash
+git clone https://github.com/jweltu/FastExpress
+cd FastExpress
+python main.py
+```
+
+## 💽Estrutura do código
 ```
 FastExpress/
 |
 ├── modules/             # Pacote de classes
+|   ├──__init__.py
 |   ├── Driver.py
 |   ├── Maintenance.py
-|   ├── Relatorio.py
+|   ├── Report.py
 |   ├── Trip.py
 |   ├── Vehicle.py
 |   └── fuelSupply.py
-|
-├── config/              # Pasta de configurações do sistema
-|   └── settings.py
 |
 ├── data.db
 ├── main.py              # Arquivo principal
